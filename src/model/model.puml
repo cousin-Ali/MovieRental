@@ -1,0 +1,45 @@
+@startuml
+
+title __MODEL's Class Diagram__\n
+
+  package model {
+    class Customer {
+        - name : String
+        - rentals : ArrayList<Rental>
+        + addRental()
+        + getName()
+        + statement()
+    }
+  }
+
+
+  package model {
+    class Movie {
+        {static} + CHILDRENS : int
+        {static} + REGULAR : int
+        {static} + NEW_RELEASE : int
+        - title : String
+        - priceCode : int
+        + getPriceCode()
+        + setPriceCode()
+        + getTitle()
+    }
+  }
+
+
+  package model {
+    class Rental {
+        - movie : Movie
+        - daysRented : int
+        + getDaysRented()
+        + getMovie()
+    }
+  }
+
+
+  Rental o--> Movie
+  Customer -right-> "*" Rental
+
+
+
+@enduml

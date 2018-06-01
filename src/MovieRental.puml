@@ -1,0 +1,33 @@
+@startuml
+
+title __MovieRental's Class Diagram__\n
+
+  package model {
+    class Customer {
+    }
+  }
+
+
+  package ui {
+    class Main {
+    }
+  }
+
+
+  package model {
+    class Movie {
+    }
+  }
+
+
+  package model {
+    class Rental {
+    }
+  }
+
+
+  Rental o--> Movie
+  Customer -right-> Rental
+
+
+@enduml

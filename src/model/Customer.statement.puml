@@ -1,0 +1,39 @@
+@startuml
+
+title __Interactions for the statement method__\n
+
+skinparam ParticipantPadding 15
+skinparam BoxPadding 10
+hide footbox
+
+participant "Customer" as Customer << (O,#2980B9) >>
+participant "Rental" as Rental << (O,#2980B9) >>
+participant "Movie" as Movie << (O,#2980B9) >>
+
+-> Customer : statement()
+activate Customer
+|||
+loop foreach rental in rentals
+    Customer -> Rental : getMovie()
+    activate Rental
+        Rental -> Movie : getPriceCode()
+        activate Movie
+        |||
+        Movie -> Rental
+        deactivate Movie
+    Rental -> Customer
+    deactivate Rental
+
+    Customer -> Rental : getDaysRented()
+    activate Rental
+    |||
+    Rental -> Customer
+    deactivate Rental
+    |||
+end
+|||
+<- Customer
+deactivate Customer
+
+
+@enduml
